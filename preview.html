@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preview — Dakota Patient Advocate Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Dakota Patient Advocate Solutions
+   Global stylesheet — warm & trustworthy
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand */
+  --ink:        #0F3239;
+  --teal:       #14646F;
+  --teal-700:   #0E4E58;
+  --teal-100:   #D7E8EA;
+  --teal-050:   #EDF5F6;
+
+  --clay:       #B85C38;
+  --clay-700:   #9A4A2B;
+  --clay-050:   #FBEFE9;
+
+  --sand:       #EFE3D0;
+  --sand-050:   #FAF5EC;
+
+  /* Neutrals */
+  --bg:         #FCFAF6;
+  --paper:      #FFFFFF;
+  --text:       #22383D;
+  --muted:      #5C7075;
+  --line:       #E4DDD1;
+  --line-soft:  #F0EBE2;
+
+  /* Type */
+  --font-head: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --wrap: 1160px;
+  --wrap-narrow: 760px;
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(15, 50, 57, .05), 0 2px 8px rgba(15, 50, 57, .05);
+  --shadow-md: 0 4px 12px rgba(15, 50, 57, .07), 0 12px 32px rgba(15, 50, 57, .07);
+  --shadow-lg: 0 10px 30px rgba(15, 50, 57, .10), 0 30px 60px rgba(15, 50, 57, .08);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; display: block; height: auto; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  line-height: 1.18;
+  margin: 0 0 .5em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.15rem, 1.4rem + 3.1vw, 3.65rem); }
+h2 { font-size: clamp(1.7rem, 1.25rem + 1.9vw, 2.5rem); }
+h3 { font-size: clamp(1.18rem, 1.05rem + .55vw, 1.45rem); }
+h4 { font-size: 1.05rem; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--teal-700); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--clay-700); }
+
+ul, ol { padding-left: 1.15em; margin: 0 0 1.1em; }
+li { margin-bottom: .45em; }
+li:last-child { margin-bottom: 0; }
+
+strong { font-weight: 650; color: var(--ink); }
+.site-footer strong, .section--ink strong, .cta-band strong, .trustbar strong { color: #fff; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+
+:focus-visible {
+  outline: 3px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection { background: var(--teal-100); color: var(--ink); }
+
+/* --------------------------------------------------------------------------
+   3. Layout helpers
+   -------------------------------------------------------------------------- */
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 24px; }
+.wrap-narrow { max-width: var(--wrap-narrow); }
+
+.section { padding: clamp(3.5rem, 2rem + 5vw, 6.5rem) 0; }
+.section--tight { padding: clamp(2.5rem, 1.5rem + 3vw, 4rem) 0; }
+.section--sand { background: var(--sand-050); border-block: 1px solid var(--line-soft); }
+.section--teal { background: var(--teal-050); border-block: 1px solid var(--teal-100); }
+.section--ink { background: var(--ink); color: #DCE8EA; }
+.section--ink h2, .section--ink h3 { color: #FFFFFF; }
+.section--ink a { color: #F0D6C6; }
+
+.center { text-align: center; }
+.center .lede { margin-inline: auto; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--ink); color: #fff; padding: .8rem 1.2rem;
+  border-radius: 0 0 var(--radius) 0; font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+/* --------------------------------------------------------------------------
+   4. Typographic utilities
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 650;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--clay-700);
+  margin: 0 0 .9rem;
+}
+.section--ink .eyebrow { color: #E4A582; }
+
+.lede {
+  font-size: clamp(1.08rem, 1rem + .35vw, 1.22rem);
+  color: var(--muted);
+  max-width: 62ch;
+  line-height: 1.62;
+}
+.section--ink .lede { color: #B8CDD1; }
+
+.section-head { max-width: 68ch; margin-bottom: 2.75rem; }
+.section-head.center { margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55em;
+  font-family: var(--font-body);
+  font-size: .97rem; font-weight: 600; line-height: 1;
+  padding: .95em 1.7em;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .15s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary { background: var(--clay); color: #fff; box-shadow: var(--shadow-sm); }
+.btn--primary:hover { background: var(--clay-700); color: #fff; box-shadow: var(--shadow-md); }
+
+.btn--teal { background: var(--teal); color: #fff; box-shadow: var(--shadow-sm); }
+.btn--teal:hover { background: var(--teal-700); color: #fff; box-shadow: var(--shadow-md); }
+
+.btn--ghost { background: transparent; color: var(--ink); border-color: rgba(15,50,57,.22); }
+.btn--ghost:hover { background: var(--paper); border-color: var(--ink); color: var(--ink); }
+
+.btn--light { background: #fff; color: var(--ink); }
+.btn--light:hover { background: var(--sand-050); color: var(--ink); }
+
+.btn--outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
+.btn--outline-light:hover { background: rgba(255,255,255,.1); color: #fff; border-color: #fff; }
+
+.btn--sm { font-size: .88rem; padding: .72em 1.25em; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.9rem; }
+.center .btn-row { justify-content: center; }
+
+.textlink {
+  font-weight: 600; font-size: .95rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--teal-100);
+  padding-bottom: 2px;
+  transition: border-color .18s ease, color .18s ease;
+}
+.textlink:hover { border-color: var(--clay); }
+.textlink::after { content: " \2192"; }
+
+/* --------------------------------------------------------------------------
+   6. Header / navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(252, 250, 246, .92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.site-header.is-scrolled { box-shadow: var(--shadow-sm); }
+
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; min-height: 78px; padding-block: .7rem;
+}
+
+.brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; flex-shrink: 0; }
+.brand__mark { height: 46px; width: auto; }
+.brand__text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand__name {
+  font-family: var(--font-head); font-size: 1.06rem; font-weight: 650;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+.brand__tag {
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--teal);
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent; border: 1.5px solid var(--line);
+  border-radius: 10px; padding: .55rem .7rem; cursor: pointer;
+  align-items: center; gap: .5rem; font: inherit; font-size: .9rem; font-weight: 600;
+  color: var(--ink);
+}
+.nav-toggle__bars { display: block; width: 20px; height: 12px; position: relative; }
+.nav-toggle__bars span {
+  position: absolute; left: 0; right: 0; height: 2px; background: var(--ink);
+  border-radius: 2px; transition: transform .22s ease, opacity .18s ease;
+}
+.nav-toggle__bars span:nth-child(1) { top: 0; }
+.nav-toggle__bars span:nth-child(2) { top: 5px; }
+.nav-toggle__bars span:nth-child(3) { top: 10px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+.site-nav { display: flex; align-items: center; gap: 1.9rem; }
+.site-nav__list { display: flex; align-items: center; gap: 1.55rem; list-style: none; margin: 0; padding: 0; }
+.site-nav__list li { margin: 0; }
+.site-nav__link {
+  font-size: .94rem; font-weight: 550; color: var(--text);
+  text-decoration: none; padding: .35rem 0; position: relative; white-space: nowrap;
+}
+.site-nav__link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--clay); border-radius: 2px; transform: scaleX(0);
+  transform-origin: left; transition: transform .2s ease;
+}
+.site-nav__link:hover { color: var(--ink); }
+.site-nav__link:hover::after, .site-nav__link[aria-current="page"]::after { transform: scaleX(1); }
+.site-nav__link[aria-current="page"] { color: var(--ink); font-weight: 650; }
+
+/* --------------------------------------------------------------------------
+   7. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(60rem 40rem at 12% -10%, var(--teal-050) 0%, rgba(237,245,246,0) 62%),
+    radial-gradient(48rem 34rem at 96% 8%, var(--sand-050) 0%, rgba(250,245,236,0) 60%),
+    var(--bg);
+  border-bottom: 1px solid var(--line-soft);
+}
+.hero__grid {
+  display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+  padding: clamp(3rem, 1.5rem + 5vw, 6rem) 0 clamp(3rem, 1.5rem + 4vw, 5rem);
+}
+.hero__title { margin-bottom: .55rem; }
+.hero__title em {
+  font-style: normal; color: var(--teal); display: block;
+}
+.hero__media { position: relative; }
+.hero__media img {
+  width: 100%; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: var(--sand-050);
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+.hero__badge {
+  position: absolute; left: -18px; bottom: -22px;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: .9rem 1.15rem;
+  box-shadow: var(--shadow-md); max-width: 240px;
+}
+.hero__badge strong { display: block; font-family: var(--font-head); font-size: 1.5rem; line-height: 1; color: var(--teal); }
+.hero__badge span { font-size: .8rem; color: var(--muted); display: block; margin-top: .25rem; }
+
+/* Page hero (interior pages) */
+.page-hero {
+  background:
+    radial-gradient(52rem 32rem at 8% -20%, var(--teal-050) 0%, rgba(237,245,246,0) 65%),
+    var(--sand-050);
+  border-bottom: 1px solid var(--line-soft);
+  padding: clamp(3rem, 2rem + 3.5vw, 5rem) 0 clamp(2.5rem, 1.8rem + 3vw, 4rem);
+}
+.breadcrumb { font-size: .82rem; color: var(--muted); margin-bottom: 1rem; }
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--clay-700); text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   8. Trust bar
+   -------------------------------------------------------------------------- */
+.trustbar { background: var(--ink); color: #C9DBDE; }
+.trustbar__list {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: .6rem 2.4rem; list-style: none; margin: 0; padding: 1.1rem 0;
+  font-size: .87rem; letter-spacing: .01em;
+}
+.trustbar__list li { margin: 0; display: flex; align-items: center; gap: .55rem; }
+.trustbar__list svg { flex: 0 0 auto; width: 18px; height: 18px; color: #7FB3B8; }
+
+/* --------------------------------------------------------------------------
+   9. Grids & cards
+   -------------------------------------------------------------------------- */
+.grid { display: grid; gap: 1.35rem; }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  display: flex; flex-direction: column;
+}
+.card--link:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--teal-100); }
+.card h3 { margin-bottom: .5rem; }
+.card p { color: var(--muted); font-size: .96rem; }
+.card__foot { margin-top: auto; padding-top: 1.1rem; }
+
+.card__icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: var(--teal-050); color: var(--teal);
+  display: grid; place-items: center; margin-bottom: 1.1rem;
+  border: 1px solid var(--teal-100);
+}
+.card__icon svg { width: 23px; height: 23px; }
+.card--clay .card__icon { background: var(--clay-050); color: var(--clay-700); border-color: #F3DBCD; }
+
+/* Numbered steps */
+.steps { counter-reset: step; display: grid; gap: 1.25rem; grid-template-columns: repeat(4, minmax(0,1fr)); }
+.step {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.6rem 1.5rem; position: relative; box-shadow: var(--shadow-sm);
+}
+.step__num {
+  display: grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--ink); color: #fff;
+  font-family: var(--font-head); font-size: 1.05rem; font-weight: 650;
+  margin-bottom: 1rem;
+}
+.step h3 { font-size: 1.08rem; }
+.step p { font-size: .94rem; color: var(--muted); margin: 0; }
+
+/* Split content blocks */
+.split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem); align-items: center;
+}
+.split--media-left .split__media { order: -1; }
+.split__media img {
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  background: var(--sand-050); width: 100%;
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; margin: 1.4rem 0 0; display: grid; gap: .75rem; }
+.checklist li {
+  position: relative; padding-left: 2rem; margin: 0;
+  font-size: .98rem;
+}
+.checklist li::before {
+  content: ""; position: absolute; left: 0; top: .34em;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--teal-050) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314646F' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+  border: 1px solid var(--teal-100);
+}
+.checklist--cross li::before {
+  background: var(--clay-050) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A4A2B' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E") center / 11px 11px no-repeat;
+  border-color: #F3DBCD;
+}
+
+/* Service detail block */
+.service-block {
+  display: grid; grid-template-columns: 260px 1fr; gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding: 2.5rem 0; border-top: 1px solid var(--line);
+}
+.service-block:first-of-type { border-top: 0; padding-top: 0; }
+.service-block__aside { position: sticky; top: 110px; align-self: start; }
+.service-block__aside h3 { margin-bottom: .6rem; }
+.service-block__tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--teal); background: var(--teal-050);
+  border: 1px solid var(--teal-100); border-radius: 999px; padding: .3rem .75rem; margin-bottom: .9rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Pricing
+   -------------------------------------------------------------------------- */
+.price-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.35rem; align-items: stretch; }
+.price-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem; display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.price-card--featured {
+  border-color: var(--teal); border-width: 2px; box-shadow: var(--shadow-md);
+}
+.price-card__flag {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--teal); color: #fff; font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; padding: .35rem .85rem; border-radius: 999px;
+  white-space: nowrap;
+}
+.price-card h3 { font-size: 1.22rem; margin-bottom: .35rem; }
+.price-card__amount {
+  font-family: var(--font-head); font-size: 2.5rem; font-weight: 650;
+  color: var(--ink); line-height: 1.05; margin: .5rem 0 .1rem;
+}
+.price-card__amount small { font-family: var(--font-body); font-size: .92rem; font-weight: 500; color: var(--muted); }
+.price-card__meta { font-size: .87rem; color: var(--muted); margin-bottom: 1.2rem; }
+.price-card ul { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: .6rem; }
+.price-card li { font-size: .94rem; padding-left: 1.6rem; position: relative; margin: 0; }
+.price-card li::before {
+  content: ""; position: absolute; left: 0; top: .48em; width: 14px; height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314646F' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.price-card .btn { margin-top: auto; width: 100%; }
+
+.rate-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.rate-table th, .rate-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--line-soft); font-size: .96rem; }
+.rate-table th { background: var(--sand-050); font-family: var(--font-body); font-weight: 650; color: var(--ink); font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+.rate-table tr:last-child td { border-bottom: 0; }
+.rate-table td:last-child { font-weight: 650; color: var(--ink); white-space: nowrap; }
+
+/* --------------------------------------------------------------------------
+   11. Quote / callout
+   -------------------------------------------------------------------------- */
+.quote {
+  background: var(--paper); border-left: 4px solid var(--clay);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.9rem 2rem; box-shadow: var(--shadow-sm);
+  font-family: var(--font-head); font-size: 1.22rem; line-height: 1.55; color: var(--ink);
+}
+.quote cite { display: block; margin-top: 1rem; font-family: var(--font-body); font-size: .88rem; font-style: normal; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+
+.callout {
+  background: var(--teal-050); border: 1px solid var(--teal-100);
+  border-radius: var(--radius); padding: 1.4rem 1.6rem; font-size: .96rem;
+}
+.callout strong { display: block; margin-bottom: .3rem; }
+.callout--warn { background: var(--clay-050); border-color: #F3DBCD; }
+
+/* --------------------------------------------------------------------------
+   12. FAQ (accordion)
+   -------------------------------------------------------------------------- */
+.faq { display: grid; gap: .8rem; }
+.faq details {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 0 1.5rem; box-shadow: var(--shadow-sm); transition: border-color .18s ease;
+}
+.faq details[open] { border-color: var(--teal-100); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 1.25rem 2rem 1.25rem 0; position: relative;
+  font-family: var(--font-head); font-size: 1.08rem; font-weight: 600; color: var(--ink);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: 0; top: 1.5rem; width: 14px; height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314646F' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform .22s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details > div { padding: 0 0 1.4rem; color: var(--muted); font-size: .97rem; }
+.faq details > div p:last-child { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   13. CTA band
+   -------------------------------------------------------------------------- */
+.cta-band {
+  background: linear-gradient(135deg, var(--ink) 0%, #164A54 55%, var(--teal-700) 100%);
+  color: #DCE8EA; text-align: center;
+  padding: clamp(3rem, 2rem + 3.5vw, 5rem) 0;
+}
+.cta-band h2 { color: #fff; margin-bottom: .7rem; }
+.cta-band p { color: #B8CDD1; max-width: 56ch; margin-inline: auto; }
+.cta-band .btn-row { justify-content: center; }
+
+/* --------------------------------------------------------------------------
+   14. Contact
+   -------------------------------------------------------------------------- */
+.contact-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: start; }
+
+.contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.1rem; }
+.contact-list li { display: flex; gap: .95rem; align-items: flex-start; margin: 0; }
+.contact-list__icon {
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px;
+  background: var(--teal-050); border: 1px solid var(--teal-100); color: var(--teal);
+  display: grid; place-items: center;
+}
+.contact-list__icon svg { width: 20px; height: 20px; }
+.contact-list dt { font-size: .74rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); margin-bottom: .15rem; }
+.contact-list dd { margin: 0; font-size: 1.03rem; font-weight: 600; color: var(--ink); }
+.contact-list dd a { text-decoration: none; color: var(--ink); }
+.contact-list dd a:hover { color: var(--clay-700); }
+.contact-list small { display: block; font-weight: 400; font-size: .86rem; color: var(--muted); margin-top: .1rem; }
+
+.form-card {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: clamp(1.6rem, 1rem + 2vw, 2.4rem);
+  box-shadow: var(--shadow-md);
+}
+.field { margin-bottom: 1.15rem; }
+.field label { display: block; font-size: .86rem; font-weight: 650; color: var(--ink); margin-bottom: .4rem; }
+.field .req { color: var(--clay); }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: .97rem; color: var(--text);
+  padding: .78rem .9rem; border: 1.5px solid var(--line); border-radius: 10px;
+  background: var(--bg); transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+.field textarea { min-height: 140px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--teal); background: var(--paper);
+  box-shadow: 0 0 0 3px var(--teal-050);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
+.form-note { font-size: .84rem; color: var(--muted); margin-top: 1rem; }
+.hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+.map-embed {
+  border: 0; width: 100%; height: 320px; border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); background: var(--sand-050);
+}
+
+/* --------------------------------------------------------------------------
+   15. Videos
+   -------------------------------------------------------------------------- */
+.video-frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-lg); background: var(--ink);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* --------------------------------------------------------------------------
+   16. Credentials strip
+   -------------------------------------------------------------------------- */
+.creds { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.5rem 3.5rem; }
+.creds figure { margin: 0; text-align: center; max-width: 170px; }
+.creds img { height: 76px; width: auto; margin-inline: auto; object-fit: contain; }
+.creds__mark { height: 76px; width: 76px; margin-inline: auto; color: var(--teal); display: grid; place-items: center; }
+.creds__mark svg { width: 60px; height: 60px; }
+.creds figcaption { font-size: .8rem; color: var(--muted); margin-top: .7rem; line-height: 1.4; }
+
+/* --------------------------------------------------------------------------
+   17. Footer
+   -------------------------------------------------------------------------- */
+.site-footer { background: var(--ink); color: #A9C2C6; font-size: .93rem; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 2.5rem;
+  padding: clamp(3rem, 2rem + 2.5vw, 4.5rem) 0 2.75rem;
+}
+.footer-brand__name { font-family: var(--font-head); font-size: 1.2rem; color: #fff; margin-bottom: .55rem; }
+.footer-brand p { font-size: .9rem; line-height: 1.65; max-width: 34ch; }
+.site-footer h4 {
+  color: #fff; font-family: var(--font-body); font-size: .76rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase; margin-bottom: 1.1rem;
+}
+.footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+.footer-links a { color: #A9C2C6; text-decoration: none; font-size: .92rem; }
+.footer-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+.social { display: flex; gap: .7rem; margin-top: 1.2rem; }
+.social a {
+  width: 42px; height: 42px; border-radius: 11px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+  color: #DCE8EA; transition: background-color .18s ease, transform .18s ease, color .18s ease, border-color .18s ease;
+}
+.social a:hover { background: var(--clay); border-color: var(--clay); color: #fff; transform: translateY(-2px); }
+.social svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+/* Social icons placed on a light background */
+.social--onlight a {
+  background: var(--teal-050); border-color: var(--teal-100); color: var(--teal);
+}
+.social--onlight a:hover { background: var(--clay); border-color: var(--clay); color: #fff; }
+.social--center { justify-content: center; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 1.5rem 0 2rem;
+  display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center;
+  font-size: .82rem; color: #85A2A7;
+}
+.footer-bottom a { color: #85A2A7; }
+.footer-disclaimer {
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 1.5rem 0; font-size: .8rem; line-height: 1.6; color: #7D989D; max-width: 90ch;
+}
+
+/* Graceful fallback if a photo can't load */
+.media-fallback {
+  min-height: 260px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--teal-050) 0%, var(--sand-050) 100%);
+  border: 1px solid var(--line);
+}
+.creds figure.media-fallback { min-height: 0; background: none; border: 0; }
+
+/* --------------------------------------------------------------------------
+   18. Reveal-on-scroll animation
+   -------------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   19. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1040px) {
+  .grid--4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.25rem; }
+}
+
+@media (max-width: 900px) {
+  .nav-toggle { display: inline-flex; }
+  .site-nav {
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: .6rem 24px 1.4rem;
+    display: none;
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav__list { flex-direction: column; align-items: stretch; gap: 0; }
+  .site-nav__list li { border-bottom: 1px solid var(--line-soft); }
+  .site-nav__link { display: block; padding: .95rem 0; font-size: 1rem; }
+  .site-nav__link::after { display: none; }
+  .site-nav .btn { margin-top: 1.1rem; width: 100%; }
+
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__media { max-width: 560px; margin-top: 1rem; }
+  .hero__badge { left: auto; right: 12px; bottom: -18px; }
+  .split { grid-template-columns: 1fr; }
+  .split--media-left .split__media { order: 0; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .price-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  .price-card--featured { order: -1; }
+  .service-block { grid-template-columns: 1fr; gap: 1.2rem; }
+  .service-block__aside { position: static; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .field-row { grid-template-columns: 1fr; }
+  .btn-row .btn { width: 100%; }
+  .trustbar__list { gap: .5rem 1.4rem; font-size: .82rem; }
+  .brand__mark { height: 40px; }
+  .brand__name { font-size: .96rem; }
+  .creds { gap: 2rem; }
+}
+
+@media print {
+  .site-header, .site-footer, .cta-band, .nav-toggle { display: none !important; }
+  body { background: #fff; font-size: 12pt; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+
+/* --- preview shell only (not part of the real site) --- */
+.pv-page { display: none; }
+.pv-page.is-active { display: block; }
+.pv-note {
+  background: #0F3239; color: #B8CDD1; font-family: var(--font-body);
+  font-size: .8rem; text-align: center; padding: .55rem 1rem; line-height: 1.5;
+}
+.pv-note strong { color: #fff; }
+</style>
+</head>
+<body>
+<div class="pv-note"><strong>Preview mode</strong> &mdash; all 8 pages bundled into one file. Click the menu to move between them. The live site is 8 separate pages.</div>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#p-index" aria-label="Dakota Patient Advocate Solutions — home">
+      <img class="brand__mark" src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/899a9f0d-a95a-4214-9241-6dd5c9e0d573/Logo.png?format=750w" alt="" data-fallback-hide>
+      <span class="brand__text">
+        <span class="brand__name">Dakota Patient Advocate Solutions</span>
+        <span class="brand__tag">Mandan, North Dakota</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="#p-what-is-an-advocate" data-page="p-what-is-an-advocate">What Is an Advocate</a></li>
+            <li><a class="site-nav__link" href="#p-services" data-page="p-services">Services</a></li>
+            <li><a class="site-nav__link" href="#p-pricing" data-page="p-pricing">Pricing</a></li>
+            <li><a class="site-nav__link" href="#p-about" data-page="p-about">About Laurie</a></li>
+            <li><a class="site-nav__link" href="#p-videos" data-page="p-videos">Videos</a></li>
+            <li><a class="site-nav__link" href="#p-contact" data-page="p-contact">Contact</a></li>
+      </ul>
+      <a class="btn btn--primary btn--sm" href="#p-contact">Free 15-Minute Call</a>
+    </nav>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="pv-page" id="p-index" data-title="Dakota Patient Advocate Solutions | North Dakota Patient Advocacy | Empower Your Healthcare Choices">
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Independent nurse patient advocate &middot; Mandan, ND</p>
+      <h1 class="hero__title">Empower your <em>healthcare choices.</em></h1>
+      <p class="lede">Navigating healthcare shouldn't feel overwhelming. I'm Laurie Boeshans &mdash; a nurse of 24 years and a Board-Certified Patient Advocate. I sit on your side of the table, help connect the puzzle pieces, and bring clarity to the process.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#p-contact">Book a free 15-minute call</a>
+        <a class="btn btn--ghost" href="#p-services">See how I can help</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <img src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/48b85087-315c-4797-bf61-b7715363497d/Untitled+design.png?format=1500w" alt="Laurie Boeshans, Board-Certified Patient Advocate and Licensed Practical Nurse, serving North Dakota families" fetchpriority="high" width="1200" height="900">
+      <div class="hero__badge">
+        <strong>24+</strong>
+        <span>years of nursing experience behind every conversation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trustbar">
+  <div class="wrap">
+    <ul class="trustbar__list">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.2 11 14.7 15.7 9.7"/></svg> Board-Certified Patient Advocate (BCPA)</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 5.6a5.2 5.2 0 0 0-7.4 0L12 6.6l-1-1a5.2 5.2 0 0 0-7.4 7.4l1 1 7.4 7.4 7.4-7.4 1-1a5.2 5.2 0 0 0 0-7.4z"/></svg> Licensed Practical Nurse since 2001</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5C7.4 20.4 4 17 4 12V6z"/><polyline points="9 12 11.2 14.2 15.5 9.8"/></svg> Independent &mdash; paid only by you</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.5" r="3"/></svg> All of North Dakota &middot; in person or virtual</li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Why this exists</p>
+      <h2>You shouldn't have to fight the system while you're trying to get well.</h2>
+      <p>Appointments run fifteen minutes. Specialists don't talk to each other. Insurance denies a medication with no explanation you can follow. A parent is being discharged tomorrow and no one has said where they're going.</p>
+      <p>After more than two decades in cardiology, internal medicine, family practice, and behavioral health, I watched capable, intelligent people leave appointments more confused than when they walked in &mdash; not because they weren't paying attention, but because the system isn't built to be understood.</p>
+      <p><strong>That's the gap I fill.</strong> I know how hospitals, clinics, and insurers actually work from the inside, and I use that knowledge entirely on your behalf.</p>
+      <a class="textlink" href="#p-about">Read more about my background</a>
+    </div>
+    <div class="split__media reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/1457f358-4f97-40c6-ba42-3a6a6b5df569/Untitled+design.png?format=1500w" alt="Compassionate patient advocacy support for North Dakota patients and families" loading="lazy" width="1200" height="900">
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand" id="services">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">How I help</p>
+      <h2>Practical support at the moments that matter most</h2>
+      <p class="lede">Every engagement is built around what you actually need &mdash; a single appointment, one stubborn insurance denial, or steady support through a long illness.</p>
+    </div>
+    <div class="grid grid--3">
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3>Appointments &amp; Care Coordination</h3>
+        <p>I go with you to appointments, help you prepare the questions that matter, take notes, and make sure your concerns are actually heard &mdash; then keep every provider on the same page afterward.</p>
+      </article>
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/></svg></div>
+        <h3>Billing &amp; Insurance Help</h3>
+        <p>Medication prior authorizations, confusing statements, and denied claims. I review the paperwork, find the error or the argument, and write the appeal.</p>
+      </article>
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></div>
+        <h3>Transitions of Care</h3>
+        <p>Searching for assisted living, memory care, or a nursing home, then coordinating the move so nothing &mdash; medications, records, or dignity &mdash; gets lost along the way.</p>
+      </article>
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 13.5 13.5 8 16 10.5 10.5 16 8"/></svg></div>
+        <h3>New Diagnosis Support</h3>
+        <p>A new diagnosis arrives with a wall of information and very little time. I translate it into plain language and help you think through the next step.</p>
+      </article>
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5C7.4 20.4 4 17 4 12V6z"/><polyline points="9 12 11.2 14.2 15.5 9.8"/></svg></div>
+        <h3>Hospital Advocacy &amp; Discharge Planning</h3>
+        <p>Someone at the bedside asking the right questions, and a discharge plan that's genuinely safe &mdash; not just a signature on a form.</p>
+      </article>
+      <article class="card card--link reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><polyline points="14 2 14 7 19 7"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <h3>Medical Records &amp; Review</h3>
+        <p>Gathering, organizing, and reviewing scattered records so you and your providers finally have the whole picture in one place.</p>
+      </article>
+    </div>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn--teal" href="#p-services">Explore all services in detail</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">Who I work with</p>
+      <h2>If any of this sounds familiar, we should talk</h2>
+    </div>
+    <div class="grid grid--4">
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 13.5 13.5 8 16 10.5 10.5 16 8"/></svg></div><h3>Newly diagnosed</h3><p>You've just been handed a diagnosis and a stack of pamphlets, and you don't know which question to ask first.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></div><h3>Families far from home</h3><p>Your parent is in a Bismarck hospital and you're in another state. You need someone trustworthy in the room.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 5.6a5.2 5.2 0 0 0-7.4 0L12 6.6l-1-1a5.2 5.2 0 0 0-7.4 7.4l1 1 7.4 7.4 7.4-7.4 1-1a5.2 5.2 0 0 0 0-7.4z"/></svg></div><h3>Caregivers running on empty</h3><p>You're managing appointments, medications, and paperwork for someone you love &mdash; on top of your own life.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/></svg></div><h3>Anyone facing a denial</h3><p>A claim was rejected or a medication wasn't authorized, and the appeal letter feels written in another language.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--teal">
+  <div class="wrap split split--media-left">
+    <div class="split__media reveal">
+      <div class="quote">
+        &ldquo;When you can't be with your loved one, we provide reliable, compassionate patient advocate support by their side. With years of experience, we help ease anxiety for families and patients alike.&rdquo;
+        <cite>Laurie Boeshans, BCPA, LPN &mdash; Founder</cite>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Independent by design</p>
+      <h2>No hospital, clinic, or insurer pays me. You do.</h2>
+      <p>That single fact changes everything about the advice you get. Case managers and discharge planners are good people working inside institutions that also employ them. My only obligation is to you.</p>
+      <ul class="checklist">
+        <li>No referral fees, kickbacks, or facility commissions &mdash; ever</li>
+        <li>No pressure toward a particular provider, plan, or placement</li>
+        <li>Straight answers, including when the answer is &ldquo;you don't need to hire me for this&rdquo;</li>
+        <li>Your information stays confidential and shared only where you direct</li>
+      </ul>
+      <div class="btn-row"><a class="btn btn--teal" href="#p-what-is-an-advocate">What exactly is a patient advocate?</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">How it works</p>
+      <h2>Four simple steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step__num">1</div><h3>Free call</h3><p>A no-cost 15&ndash;30 minute conversation so I understand the situation and you can decide if this feels right.</p></div>
+      <div class="step reveal"><div class="step__num">2</div><h3>Consultation</h3><p>A focused 60-minute session where we go deep on the details and map out what needs to happen.</p></div>
+      <div class="step reveal"><div class="step__num">3</div><h3>A plan you keep</h3><p>You leave with a written plan &mdash; priorities, questions to ask, deadlines, and who is responsible for what.</p></div>
+      <div class="step reveal"><div class="step__num">4</div><h3>Support that fits</h3><p>Hire me by the hour or by the package for as much or as little ongoing help as you need.</p></div>
+    </div>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn--ghost" href="#p-pricing">See rates and packages</a></div>
+  </div>
+</section>
+
+<section class="section section--tight section--sand">
+  <div class="wrap center">
+    <p class="eyebrow">Credentials &amp; memberships</p>
+    <div class="creds reveal">
+      <figure>
+        <img src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/0357ea59-38d6-4076-91dd-3443fc6853bc/PACB-LOGO_RGB-300dpi.png?format=750w" alt="Patient Advocate Certification Board logo" loading="lazy">
+        <figcaption>Board-Certified Patient Advocate (BCPA), certified 2025 by the Patient Advocate Certification Board</figcaption>
+      </figure>
+      <figure>
+        <img src="https://gnanow.org/templates/gnanownew/images/gna_member_badge_2023.png" alt="Greater National Advocates member badge" loading="lazy">
+        <figcaption>Member, Greater National Advocates</figcaption>
+      </figure>
+      <figure>
+        <div class="creds__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 5.6a5.2 5.2 0 0 0-7.4 0L12 6.6l-1-1a5.2 5.2 0 0 0-7.4 7.4l1 1 7.4 7.4 7.4-7.4 1-1a5.2 5.2 0 0 0 0-7.4z"/></svg></div>
+        <figcaption>Licensed Practical Nurse in good standing since 2001 &mdash; 24+ years of clinical practice</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Let's start with a conversation.</h2>
+    <p>A free 15&ndash;30 minute call costs nothing and there's no obligation. Tell me what's going on, and I'll tell you honestly whether I can help.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section--tight">
+  <div class="wrap center">
+    <p class="eyebrow">Follow along</p>
+    <h2 style="margin-bottom:.4rem">Healthcare, explained in plain language</h2>
+    <p class="lede" style="margin-inline:auto">I share short videos and practical tips on navigating appointments, insurance, and hospital stays.</p>
+    <div style="margin-top:1.5rem"><div class="social social--center social--onlight">
+          <a href="https://www.facebook.com/profile.php?id=61579310060357" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+          <a href="https://www.instagram.com/dakotapatientadvocatesolutions/" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.18.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.18-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.18.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.18.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.18-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.18.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.18-.4-1.24-.06-1.59-.07-4.74-.07zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98zm0 9.05a3.56 3.56 0 1 0 0-7.12 3.56 3.56 0 0 0 0 7.12zm6.99-9.27a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="https://www.youtube.com/@laurieboeshans275" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.12-2.13C19.5 4.25 12 4.25 12 4.25s-7.5 0-9.38.52A3 3 0 0 0 .5 6.9C0 8.79 0 12 0 12s0 3.21.5 5.1a3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13C24 15.21 24 12 24 12s0-3.21-.5-5.1zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg></a>
+        </div></div>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn--ghost" href="#p-videos">Watch the video library</a></div>
+  </div>
+</section>
+
+</div>
+<div class="pv-page" id="p-what-is-an-advocate" data-title="What Is a Patient Advocate? | Dakota Patient Advocate Solutions">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; What Is an Advocate</nav>
+    <p class="eyebrow">Understanding the role</p>
+    <h1>What is a patient advocate?</h1>
+    <p class="lede">A patient advocate is a trained professional you hire to stand beside you inside the healthcare system &mdash; explaining, organizing, questioning, and making sure decisions get made with you rather than around you.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <h2>The short version</h2>
+    <p>Think of a patient advocate the way you'd think of an accountant at tax time or a realtor when you're buying a house. The system is navigable &mdash; but it has its own language, its own timelines, and its own rules that nobody hands you in writing. An advocate is someone who already knows those rules and works only for you.</p>
+    <p>An <strong>independent</strong> advocate is not employed by a hospital, clinic, insurance company, or care facility. Many hospitals have a &ldquo;patient advocate&rdquo; or ombudsman on staff, and they can be genuinely helpful &mdash; but they are paid by the institution. When your interests and the institution's interests diverge, an independent advocate has no conflict to manage.</p>
+    <div class="callout">
+      <strong>The distinction that matters</strong>
+      I am a <em>nurse</em> advocate. Twenty-four years of clinical practice means I can read the chart, understand the medication list, recognize when something in a care plan doesn't add up, and ask a physician a clinical question in the language they use with each other.
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="grid grid--2">
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.2 11 14.7 15.7 9.7"/></svg></div>
+        <h3>What a patient advocate does</h3>
+        <ul class="checklist">
+          <li>Attends appointments with you, in person or virtually, and takes detailed notes</li>
+          <li>Prepares the questions you'd otherwise think of in the parking lot afterward</li>
+          <li>Translates diagnoses, test results, and treatment options into plain language</li>
+          <li>Gathers and organizes medical records scattered across systems</li>
+          <li>Coordinates between specialists who aren't talking to each other</li>
+          <li>Reviews bills and Explanation of Benefits statements for errors</li>
+          <li>Writes and files insurance appeals for denied claims and authorizations</li>
+          <li>Advocates at the bedside during a hospital stay and pushes for a safe discharge</li>
+          <li>Researches and vets assisted living, memory care, and nursing home options</li>
+          <li>Keeps distant family members informed and included</li>
+        </ul>
+      </div>
+      <div class="card card--clay reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg></div>
+        <h3>What a patient advocate does <em>not</em> do</h3>
+        <ul class="checklist checklist--cross">
+          <li>Diagnose conditions or prescribe medication</li>
+          <li>Provide hands-on nursing or personal care in your home</li>
+          <li>Replace your physician, nurse practitioner, or care team</li>
+          <li>Give legal advice or represent you in court</li>
+          <li>Make medical decisions for you &mdash; the decisions stay yours</li>
+          <li>Guarantee a specific medical, billing, or insurance outcome</li>
+          <li>Accept payment, referral fees, or commissions from any provider or facility</li>
+        </ul>
+        <p style="margin-top:1.3rem;font-size:.93rem">Where something falls outside my scope, I'll say so plainly and, where I can, point you toward the right professional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">Timing</p>
+      <h2>When it's worth calling an advocate</h2>
+      <p class="lede">You don't need to be in a crisis. Most people call at one of these moments.</p>
+    </div>
+    <div class="grid grid--3">
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 13.5 13.5 8 16 10.5 10.5 16 8"/></svg></div><h3>A serious new diagnosis</h3><p>Cancer, heart failure, dementia, an autoimmune condition &mdash; anything where the treatment path has real branches and the choices are yours to make.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5C7.4 20.4 4 17 4 12V6z"/><polyline points="9 12 11.2 14.2 15.5 9.8"/></svg></div><h3>An unplanned hospital stay</h3><p>Especially when discharge is being discussed and the plan sounds faster than it sounds safe.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/></svg></div><h3>A denial or a bill that's wrong</h3><p>Prior authorizations, out-of-network surprises, duplicate charges, or an appeal with a deadline attached.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></div><h3>Caring from a distance</h3><p>You live out of state and need eyes, ears, and a nurse's judgment in the room.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></div><h3>A move to a care facility</h3><p>Assisted living, memory care, or skilled nursing &mdash; a decision most families make once, under time pressure.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 3 14.7 9 21 9.8 16.4 14.1 17.6 20.4 12 17.4 6.4 20.4 7.6 14.1 3 9.8 9.3 9"/></svg></div><h3>Nobody is coordinating</h3><p>Four specialists, three portals, two pharmacies, and no single person holding the whole picture.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--teal">
+  <div class="wrap wrap-narrow">
+    <div class="section-head center">
+      <p class="eyebrow">Common questions</p>
+      <h2>Questions people ask first</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Isn't this what the hospital's case manager is for?</summary>
+        <div><p>Case managers and discharge planners do important work, and I collaborate with them respectfully. The difference is who employs them. Their role includes managing length of stay and institutional priorities alongside your care. I have one client in the room: you.</p></div>
+      </details>
+      <details>
+        <summary>Will my doctor be offended if I bring an advocate?</summary>
+        <div><p>In my experience, the opposite. Clinicians generally welcome a prepared patient with organized records and clear questions &mdash; it makes a fifteen-minute appointment far more productive. I'm there to support the relationship with your care team, not to fight it.</p></div>
+      </details>
+      <details>
+        <summary>Does insurance or Medicare pay for a patient advocate?</summary>
+        <div><p>Generally, no. Independent advocacy is a private-pay service. Some people use HSA or FSA funds &mdash; check with your plan administrator, as eligibility varies. Many families find the cost is offset by billing errors caught or denials overturned, but I never promise that as an outcome.</p></div>
+      </details>
+      <details>
+        <summary>What does &ldquo;Board-Certified&rdquo; actually mean?</summary>
+        <div><p>The BCPA credential is awarded by the Patient Advocate Certification Board, an independent body. It requires documented professional experience, a qualifying education background, passing a national examination, and adherence to a published code of ethics with ongoing continuing education. It is currently the only nationally recognized certification for the profession.</p></div>
+      </details>
+      <details>
+        <summary>Do you have to be local to work with you?</summary>
+        <div><p>No. I attend appointments and hospital visits in person throughout the Bismarck&ndash;Mandan area and travel elsewhere in North Dakota by arrangement. Records review, insurance appeals, research, and family coordination all work well virtually, so I support clients across the state and their families anywhere.</p></div>
+      </details>
+      <details>
+        <summary>Is what I tell you confidential?</summary>
+        <div><p>Yes. Your information is kept confidential and is shared only with the people and organizations you specifically authorize in writing. That authorization is part of the paperwork we complete before any work begins.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Still not sure whether you need an advocate?</h2>
+    <p>That's exactly what the free call is for. If your situation doesn't call for paid help, I'll tell you that &mdash; and point you somewhere useful instead.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+<div class="pv-page" id="p-services" data-title="Patient Advocacy Services | Dakota Patient Advocate Solutions | Mandan, ND">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; Services</nav>
+    <p class="eyebrow">Services</p>
+    <h1>Support built around your situation</h1>
+    <p class="lede">Some clients need one hour to untangle a single insurance denial. Others need someone alongside them for months. Every engagement starts the same way &mdash; with a free call &mdash; and is shaped entirely by what's actually in front of you.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">Care navigation</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <h3>Appointments &amp; Care Coordination</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">The fifteen-minute appointment is where most healthcare actually happens &mdash; and it's where the most gets lost. I make sure it counts.</p>
+      <ul class="checklist">
+        <li>Pre-appointment preparation: we build the list of questions together, in priority order</li>
+        <li>Attendance in person or by phone/video, with detailed notes you keep</li>
+        <li>Real-time clarification &mdash; I ask the follow-up question when an answer isn't clear</li>
+        <li>A written summary after each visit: what was decided, what changes, what happens next</li>
+        <li>Coordination between primary care and specialists so nobody is working from stale information</li>
+        <li>Medication list reconciliation across every prescriber and pharmacy</li>
+        <li>Tracking referrals, orders, and test results that would otherwise fall through</li>
+      </ul>
+    </div>
+  </div>
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">Coverage &amp; cost</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/></svg></div>
+      <h3>Billing &amp; Insurance Help</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">Denials and billing errors are common, and they are frequently reversible &mdash; if someone knows what to look for and files inside the deadline.</p>
+      <ul class="checklist">
+        <li>Medication prior authorization requests and follow-through with the prescriber's office</li>
+        <li>Line-by-line review of itemized bills and Explanation of Benefits statements</li>
+        <li>Identifying duplicate charges, coding errors, and services never rendered</li>
+        <li>Preparing and submitting written appeals for denied claims and denied authorizations</li>
+        <li>Escalating to peer-to-peer review, external review, or the state insurance department where appropriate</li>
+        <li>Explaining deductibles, coinsurance, out-of-pocket maximums, and network rules in plain numbers</li>
+        <li>Locating manufacturer assistance programs, foundation grants, and charity care applications</li>
+      </ul>
+    </div>
+  </div>
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">Placement</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></div>
+      <h3>Transitions of Care</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">Moving a parent into assisted living, memory care, or a nursing home is a decision most families make exactly once &mdash; usually with a deadline attached.</p>
+      <ul class="checklist">
+        <li>Clarifying the actual level of care needed, clinically, before touring anything</li>
+        <li>Researching and shortlisting facilities that match the need, budget, and location</li>
+        <li>Reviewing state survey results, staffing data, and inspection history</li>
+        <li>Preparing the questions to ask on a tour that admissions staff aren't expecting</li>
+        <li>Coordinating the transfer of records, medications, and equipment on move day</li>
+        <li>Following up in the first weeks to confirm the care plan is being followed</li>
+        <li>Supporting the family conversation when siblings don't agree</li>
+      </ul>
+    </div>
+  </div>
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">Understanding</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 13.5 13.5 8 16 10.5 10.5 16 8"/></svg></div>
+      <h3>New Diagnosis Support</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">A new diagnosis arrives with a wall of information and almost no time to absorb it. My job is to slow it down and make it make sense.</p>
+      <ul class="checklist">
+        <li>Plain-language explanation of the diagnosis, staging or severity, and prognosis language</li>
+        <li>Walking through treatment options, including the trade-offs nobody has time to describe</li>
+        <li>Helping you decide whether a second opinion is worth pursuing, and arranging it if so</li>
+        <li>Vetting the information you've found online &mdash; what's credible, what isn't</li>
+        <li>Preparing you for the next specialist visit so you arrive informed rather than overwhelmed</li>
+        <li>Connecting you with disease-specific support organizations and resources</li>
+        <li>Helping you articulate your own goals of care, so treatment decisions reflect what you want</li>
+      </ul>
+    </div>
+  </div>
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">At the bedside</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5C7.4 20.4 4 17 4 12V6z"/><polyline points="9 12 11.2 14.2 15.5 9.8"/></svg></div>
+      <h3>Hospital Advocacy &amp; Discharge Planning</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">Hospitals are fast, fragmented, and staffed in shifts. Someone needs to be tracking the whole story &mdash; and asking whether tomorrow's discharge is genuinely safe.</p>
+      <ul class="checklist">
+        <li>Bedside presence during rounds, with the right clinical questions asked in the moment</li>
+        <li>Daily updates to family members who can't be there, including those out of state</li>
+        <li>Monitoring for medication changes, new orders, and gaps between shifts</li>
+        <li>Reviewing the proposed discharge plan against the reality of the home situation</li>
+        <li>Confirming equipment, home health, therapy, and follow-up appointments are truly in place before discharge</li>
+        <li>Support in appealing a discharge you believe is premature</li>
+        <li>Post-discharge follow-up in the first days, when readmissions most often happen</li>
+      </ul>
+    </div>
+  </div>
+  <div class="service-block reveal">
+    <div class="service-block__aside">
+      <span class="service-block__tag">Specialty</span>
+      <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><polyline points="14 2 14 7 19 7"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+      <h3>Medical Records &amp; Specialty Services</h3>
+    </div>
+    <div>
+      <p class="lede" style="font-size:1.05rem;color:var(--text)">Standalone projects for people who need one specific thing done thoroughly, rather than ongoing support.</p>
+      <ul class="checklist">
+        <li>Requesting, gathering, and organizing records from multiple health systems into one file</li>
+        <li>Chronological medical summary &mdash; a single document your providers can actually read</li>
+        <li>Focused medical records review with a written summary of findings and questions</li>
+        <li>Insurance billing audit for a single episode of care or a full year</li>
+        <li>Standalone appeal preparation for one denied claim or authorization</li>
+        <li>Preparation support ahead of a scheduled surgery or procedure</li>
+        <li>Second-opinion coordination, including assembling the packet the new physician needs</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="grid grid--3">
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.5" r="3"/></svg></div>
+        <h3>Where I work</h3>
+        <p>In-person advocacy throughout the Bismarck&ndash;Mandan area, including hospitals, clinics, and care facilities. Travel elsewhere in North Dakota by arrangement.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8.5 16 12 10 15.5"/></svg></div>
+        <h3>Virtual support</h3>
+        <p>Records review, appeals, research, telehealth attendance, and family coordination work just as well by phone or video &mdash; anywhere in the state, for families anywhere.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 6.8 12 12 15.6 14"/></svg></div>
+        <h3>Response times</h3>
+        <p>Inquiries answered within one business day. Hospital and urgent situations are prioritized &mdash; call directly at <a href="tel:+17013191700">(701) 319-1700</a> when time matters.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:2rem">
+      <strong>Not sure which of these you need?</strong>
+      Most people aren't &mdash; that's normal. Describe the situation on a free call and I'll tell you which of these actually applies, roughly how much time it's likely to take, and whether it's something you could reasonably handle yourself.
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Tell me what's going on.</h2>
+    <p>The first call is free and there's no obligation. Fifteen minutes is usually enough for me to tell you whether I can help and what it would take.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+<div class="pv-page" id="p-pricing" data-title="Pricing &amp; Packages | Dakota Patient Advocate Solutions">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; Pricing</nav>
+    <p class="eyebrow">Pricing</p>
+    <h1>Clear rates, no surprises</h1>
+    <p class="lede">Independent advocacy is a private-pay service, so you should know exactly what it costs before you commit to anything. Nothing here is billed without your approval first.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Free Initial Call</h3>
+        <div class="price-card__amount">$0</div>
+        <p class="price-card__meta">15&ndash;30 minutes &middot; phone or video</p>
+        <ul>
+          <li>Describe what's happening in your own words</li>
+          <li>My honest read on whether advocacy helps here</li>
+          <li>A rough sense of the time it would take</li>
+          <li>No obligation and no sales pressure</li>
+        </ul>
+        <a class="btn btn--ghost" href="#p-contact">Request a call</a>
+      </div>
+
+      <div class="price-card price-card--featured reveal">
+        <span class="price-card__flag">Most people start here</span>
+        <h3>Initial Consultation</h3>
+        <div class="price-card__amount">$150</div>
+        <p class="price-card__meta">60 minutes &middot; in person, phone, or video</p>
+        <ul>
+          <li>A full review of the medical and insurance situation</li>
+          <li>Records and documents you've collected, gone through together</li>
+          <li>A written action plan with priorities and deadlines</li>
+          <li>Questions prepared for your next appointment</li>
+          <li>Clear recommendation on what, if anything, comes next</li>
+        </ul>
+        <a class="btn btn--primary" href="#p-contact">Book a consultation</a>
+      </div>
+
+      <div class="price-card reveal">
+        <h3>Ongoing Advocacy</h3>
+        <div class="price-card__amount">$150<small> / hour</small></div>
+        <p class="price-card__meta">Billed in quarter-hour increments</p>
+        <ul>
+          <li>Appointment and hospital attendance</li>
+          <li>Insurance appeals and billing review</li>
+          <li>Records gathering, research, and calls on your behalf</li>
+          <li>Family updates and care coordination</li>
+          <li>Discounted rates available through packages below</li>
+        </ul>
+        <a class="btn btn--teal" href="#p-contact">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap wrap-narrow">
+    <div class="section-head">
+      <p class="eyebrow">Packages</p>
+      <h2>Support packages for longer situations</h2>
+      <p class="lede">When you know the road ahead is longer than an hour or two, a package keeps things simple. Hours are drawn down as they're used, across any of the services offered.</p>
+    </div>
+    <table class="rate-table">
+      <caption class="sr-only">Support package pricing</caption>
+      <thead>
+        <tr><th scope="col">Package</th><th scope="col">Best for</th><th scope="col">Price</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>3-hour package</strong></td><td>A single appointment series, or one insurance appeal seen through end to end</td><td>$450</td></tr>
+        <tr><td><strong>6-hour package</strong></td><td>A new diagnosis workup, or a hospital stay with discharge planning</td><td>$900</td></tr>
+        <tr><td><strong>10-hour package</strong></td><td>A facility search and move, or sustained support through a long treatment course</td><td>$1,500</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem;font-size:.92rem;color:var(--muted)">Package hours never expire during an active engagement, and unused time is refundable if the situation resolves sooner than expected.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <div class="section-head">
+      <p class="eyebrow">The details</p>
+      <h2>How billing works</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Does insurance or Medicare cover this?</summary>
+        <div><p>Independent patient advocacy is generally not covered by Medicare, Medicaid, or private health insurance &mdash; it's paid privately, like hiring an accountant or an attorney. Some clients are able to use HSA or FSA funds; eligibility varies by plan, so check with your administrator first. I provide an itemized receipt for any submission you'd like to attempt.</p></div>
+      </details>
+      <details>
+        <summary>What exactly is billable time?</summary>
+        <div><p>Time spent working on your behalf: appointments and hospital visits, phone calls with providers and insurers, records review, research, drafting appeals, and family updates. Travel within the Bismarck&ndash;Mandan area is not billed. Longer travel is discussed and agreed in advance. Time is tracked in quarter-hour increments and itemized on every invoice.</p></div>
+      </details>
+      <details>
+        <summary>Will I get a bill I wasn't expecting?</summary>
+        <div><p>No. We agree on scope and an estimated range before work begins, and I check in with you before exceeding it. If a situation changes and more time is needed, that's a conversation, not a surprise line item.</p></div>
+      </details>
+      <details>
+        <summary>How and when do I pay?</summary>
+        <div><p>Consultations and packages are paid at the time of service. Ongoing hourly work is invoiced on a regular schedule. Payment methods are confirmed when we begin; if cost is a genuine barrier for your situation, say so on the free call and we'll talk honestly about what's workable.</p></div>
+      </details>
+      <details>
+        <summary>Is the cost worth it?</summary>
+        <div><p>Sometimes an advocate catches a billing error or overturns a denial that more than covers the fee &mdash; but I won't promise that, because no one honestly can. What I will say is this: on the free call, if I don't think paid advocacy will meaningfully change your situation, I'll tell you so.</p></div>
+      </details>
+    </div>
+
+    <div class="callout callout--warn" style="margin-top:2rem">
+      <strong>A note on outcomes</strong>
+      No patient advocate can guarantee a medical result, an approved claim, or a specific placement. What I can commit to is thorough preparation, persistent follow-through, and honest communication about where things stand.
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Start with the free call &mdash; not the invoice.</h2>
+    <p>There's no cost to find out whether this makes sense for your situation.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+<div class="pv-page" id="p-about" data-title="About Laurie Boeshans, BCPA, LPN | Dakota Patient Advocate Solutions">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; About Laurie</nav>
+    <p class="eyebrow">About</p>
+    <h1>Meet Laurie Boeshans, BCPA, LPN</h1>
+    <p class="lede">Twenty-four years of nursing, and a conviction that no one should have to face the healthcare system alone.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">My story</p>
+      <h2>I kept watching the same thing happen.</h2>
+      <p>I've been a Licensed Practical Nurse since 2001. Over more than two decades I've worked in cardiology, internal medicine, family practice, and behavioral health, in hospitals, clinics, and nursing homes, caring for patients from newborns to the very end of life.</p>
+      <p>And in all of those settings, I kept seeing the same thing: capable, intelligent people leaving an appointment more confused than when they arrived. Families making enormous decisions with a fraction of the information they needed. Patients giving up on a medication because an insurance denial letter was too dense to fight.</p>
+      <p>None of that was anyone's fault. It's what happens when a system built out of separate institutions asks a person in the middle of the worst week of their life to coordinate it.</p>
+      <p>So I built <strong>Dakota Patient Advocate Solutions</strong> &mdash; an independent practice where the whole job is to be on the patient's side of the table. In 2025 I earned the Board-Certified Patient Advocate credential to hold that work to a national professional standard.</p>
+      <p>I'm proud that it's a North Dakota practice, serving neighbors in the community where I've built my life.</p>
+    </div>
+    <div class="split__media reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/48b85087-315c-4797-bf61-b7715363497d/Untitled+design.png?format=1500w" alt="Laurie Boeshans, BCPA, LPN, founder of Dakota Patient Advocate Solutions" loading="lazy" width="1200" height="900">
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="grid grid--3">
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.2 11 14.7 15.7 9.7"/></svg></div>
+        <h3>Credentials</h3>
+        <ul class="checklist">
+          <li>Board-Certified Patient Advocate (BCPA), 2025</li>
+          <li>Licensed Practical Nurse, licensed since 2001</li>
+          <li>Member, Greater National Advocates</li>
+          <li>Ongoing continuing education in healthcare policy and advocacy practice</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><polyline points="14 2 14 7 19 7"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <h3>Education</h3>
+        <ul class="checklist">
+          <li>Saint Paul College &mdash; Practical Nursing program, 2001</li>
+          <li>Bismarck State College &mdash; A.S., Pre-Nursing, 1996</li>
+          <li>Regular participation in national advocacy webinars and workshops</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 5.6a5.2 5.2 0 0 0-7.4 0L12 6.6l-1-1a5.2 5.2 0 0 0-7.4 7.4l1 1 7.4 7.4 7.4-7.4 1-1a5.2 5.2 0 0 0 0-7.4z"/></svg></div>
+        <h3>Clinical background</h3>
+        <ul class="checklist">
+          <li>Cardiology and internal medicine</li>
+          <li>Family practice</li>
+          <li>Behavioral health</li>
+          <li>Hospital, clinic, and long-term care settings</li>
+          <li>Patients from newborn through geriatric care</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap-narrow">
+    <div class="section-head">
+      <p class="eyebrow">How I work</p>
+      <h2>What you can expect from me</h2>
+    </div>
+    <div class="grid grid--2">
+      <div class="card reveal"><h3>Plain language, always</h3><p>If I use a clinical term, I'll explain it. If I don't know something, I'll say so and find out rather than guess.</p></div>
+      <div class="card reveal"><h3>You make the decisions</h3><p>My role is to make sure you're deciding with complete information &mdash; not to decide for you, and not to steer you toward what I'd choose.</p></div>
+      <div class="card reveal"><h3>Prepared, every time</h3><p>I read the records before the appointment. I know the medication list. I arrive with the questions written down.</p></div>
+      <div class="card reveal"><h3>Respectful of your care team</h3><p>I work alongside your providers, not against them. Good advocacy usually makes their job easier, too.</p></div>
+    </div>
+
+    <div class="quote reveal" style="margin-top:2.5rem">
+      &ldquo;Navigating healthcare shouldn't feel overwhelming. I help connect the puzzle pieces and bring clarity to the process.&rdquo;
+      <cite>Laurie Boeshans, BCPA, LPN</cite>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight section--sand">
+  <div class="wrap center">
+    <p class="eyebrow">Credentials &amp; memberships</p>
+    <div class="creds reveal">
+      <figure>
+        <img src="https://images.squarespace-cdn.com/content/v1/68792d6cbc7fb216ff14076a/0357ea59-38d6-4076-91dd-3443fc6853bc/PACB-LOGO_RGB-300dpi.png?format=750w" alt="Patient Advocate Certification Board logo" loading="lazy">
+        <figcaption>Board-Certified Patient Advocate (BCPA), certified 2025 by the Patient Advocate Certification Board</figcaption>
+      </figure>
+      <figure>
+        <img src="https://gnanow.org/templates/gnanownew/images/gna_member_badge_2023.png" alt="Greater National Advocates member badge" loading="lazy">
+        <figcaption>Member, Greater National Advocates</figcaption>
+      </figure>
+      <figure>
+        <div class="creds__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 5.6a5.2 5.2 0 0 0-7.4 0L12 6.6l-1-1a5.2 5.2 0 0 0-7.4 7.4l1 1 7.4 7.4 7.4-7.4 1-1a5.2 5.2 0 0 0 0-7.4z"/></svg></div>
+        <figcaption>Licensed Practical Nurse in good standing since 2001 &mdash; 24+ years of clinical practice</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>I'd like to hear what you're facing.</h2>
+    <p>Start with a free 15-minute call. No cost, no obligation &mdash; just a conversation with a nurse who knows the system.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+<div class="pv-page" id="p-videos" data-title="Videos | Dakota Patient Advocate Solutions">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; Videos</nav>
+    <p class="eyebrow">Video library</p>
+    <h1>Patient advocacy, in my own words</h1>
+    <p class="lede">Short, practical videos on navigating appointments, insurance, hospital stays, and the decisions that come with a new diagnosis. Helping people navigate their healthcare journey &mdash; sharing in my own words.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="video-frame reveal">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/videoseries?list=UUkweh4HV-2vvSmd1lhYQfVw&amp;rel=0"
+        title="Dakota Patient Advocate Solutions video library"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy"></iframe>
+    </div>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn--primary" href="https://www.youtube.com/@laurieboeshans275" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+      <a class="btn btn--ghost" href="https://www.youtube.com/@laurieboeshans275?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe to the channel</a>
+    </div>
+    <p class="form-note center" style="margin-top:1rem">Videos play newest first. Use the playlist icon in the top corner of the player to browse everything.</p>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">What I cover</p>
+      <h2>Topics you'll find on the channel</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3>Getting more from an appointment</h3><p>How to prepare, what to bring, and the questions that change the conversation with your doctor.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/></svg></div><h3>Insurance, decoded</h3><p>Prior authorizations, denials, appeals, and how to read an Explanation of Benefits without a headache.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 6v6c0 5-3.4 8.4-8 9.5C7.4 20.4 4 17 4 12V6z"/><polyline points="9 12 11.2 14.2 15.5 9.8"/></svg></div><h3>Hospital stays</h3><p>What to watch for, who to ask, and how to know whether a discharge plan is actually safe.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 13.5 13.5 8 16 10.5 10.5 16 8"/></svg></div><h3>After a new diagnosis</h3><p>Slowing down the first few weeks, and deciding whether a second opinion is worth pursuing.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></div><h3>Caregiving from a distance</h3><p>Staying informed and useful when you can't be in the room.</p></article>
+      <article class="card reveal"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></div><h3>Care transitions</h3><p>Assisted living, memory care, and nursing homes &mdash; what to ask before you choose.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight center">
+  <div class="wrap">
+    <p class="eyebrow">Follow along</p>
+    <h2 style="margin-bottom:1.2rem">New videos and tips, shared regularly</h2>
+    <div class="social social--center social--onlight">
+          <a href="https://www.facebook.com/profile.php?id=61579310060357" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+          <a href="https://www.instagram.com/dakotapatientadvocatesolutions/" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.18.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.18-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.18.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.18.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.18-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.18.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.18-.4-1.24-.06-1.59-.07-4.74-.07zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98zm0 9.05a3.56 3.56 0 1 0 0-7.12 3.56 3.56 0 0 0 0 7.12zm6.99-9.27a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="https://www.youtube.com/@laurieboeshans275" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.12-2.13C19.5 4.25 12 4.25 12 4.25s-7.5 0-9.38.52A3 3 0 0 0 .5 6.9C0 8.79 0 12 0 12s0 3.21.5 5.1a3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13C24 15.21 24 12 24 12s0-3.21-.5-5.1zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg></a>
+        </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Have a question the videos don't answer?</h2>
+    <p>Ask it directly. The first call is free and there's no obligation.</p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="#p-contact">Request your free call</a>
+      <a class="btn btn--outline-light" href="tel:+17013191700">Call (701) 319-1700</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+<div class="pv-page" id="p-contact" data-title="Contact | Free Consultation | Dakota Patient Advocate Solutions">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#p-index">Home</a> &nbsp;/&nbsp; Contact</nav>
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk about what you're facing</h1>
+    <p class="lede">The first conversation is free, lasts 15&ndash;30 minutes, and carries no obligation. Call, email, or send the form below &mdash; I answer every inquiry within one business day.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <h2>Reach me directly</h2>
+      <ul class="contact-list" style="margin-top:1.6rem">
+        <li>
+          <span class="contact-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><dl style="margin:0"><dt>Phone</dt><dd><a href="tel:+17013191700">(701) 319-1700</a><small>Best for urgent hospital or discharge situations</small></dd></dl></div>
+        </li>
+        <li>
+          <span class="contact-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2.5 6.5 12 13 21.5 6.5"/></svg></span>
+          <div><dl style="margin:0"><dt>Email</dt><dd><a href="mailto:dpas.nd@outlook.com">dpas.nd@outlook.com</a><small>Answered within one business day</small></dd></dl></div>
+        </li>
+        <li>
+          <span class="contact-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.5" r="3"/></svg></span>
+          <div><dl style="margin:0"><dt>Based in</dt><dd>Mandan, ND 58554<small>Serving Bismarck&ndash;Mandan in person and all of North Dakota virtually</small></dd></dl></div>
+        </li>
+        <li>
+          <span class="contact-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 6.8 12 12 15.6 14"/></svg></span>
+          <div><dl style="margin:0"><dt>Office hours</dt><dd>Monday – Friday, 8:00 am – 5:00 pm CT<small>Hospital situations accommodated outside these hours by arrangement</small></dd></dl></div>
+        </li>
+      </ul>
+
+      <div style="margin-top:2rem">
+        <h3 style="font-size:1.05rem">Follow along</h3>
+        <div class="social social--onlight">
+          <a href="https://www.facebook.com/profile.php?id=61579310060357" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+          <a href="https://www.instagram.com/dakotapatientadvocatesolutions/" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.18.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.18-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.18.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.18.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.18-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.18.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.18-.4-1.24-.06-1.59-.07-4.74-.07zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98zm0 9.05a3.56 3.56 0 1 0 0-7.12 3.56 3.56 0 0 0 0 7.12zm6.99-9.27a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="https://www.youtube.com/@laurieboeshans275" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.12-2.13C19.5 4.25 12 4.25 12 4.25s-7.5 0-9.38.52A3 3 0 0 0 .5 6.9C0 8.79 0 12 0 12s0 3.21.5 5.1a3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13C24 15.21 24 12 24 12s0-3.21-.5-5.1zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:2rem">
+        <strong>If this is a medical emergency</strong>
+        Call 911 or go to your nearest emergency department. Patient advocacy is not emergency care, and this form is not monitored around the clock.
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h2 style="font-size:1.5rem">Request your free call</h2>
+      <p style="color:var(--muted);font-size:.95rem">Tell me a little about the situation and I'll get back to you within one business day.</p>
+
+      <form id="contact-form" data-mode="mailto" novalidate>
+        <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="topic">What do you need help with?</label>
+          <select id="topic" name="topic">
+            <option value="">Select one &mdash; or leave blank</option>
+            <option>Appointments &amp; care coordination</option>
+            <option>Billing or insurance denial</option>
+            <option>A hospital stay or discharge</option>
+            <option>A new diagnosis</option>
+            <option>Assisted living / nursing home search</option>
+            <option>Medical records review</option>
+            <option>Something else / not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="preferred">Preferred way to be contacted</label>
+          <select id="preferred" name="preferred">
+            <option>Phone call</option>
+            <option>Text message</option>
+            <option>Email</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Tell me what's going on <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" required placeholder="A few sentences is plenty. Please don't include sensitive medical details in this form &mdash; we'll cover those securely on the call."></textarea>
+        </div>
+
+        <button class="btn btn--primary" type="submit" style="width:100%">Send my request</button>
+        <p class="form-note" id="form-status" role="status" aria-live="polite">Your message goes straight to Laurie. Prefer to talk now? Call <a href="tel:+17013191700">(701) 319-1700</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight section--sand">
+  <div class="wrap">
+    <iframe class="map-embed"
+      src="https://www.google.com/maps?q=Mandan,%20ND%2058554&amp;output=embed"
+      title="Map showing Mandan, North Dakota &mdash; the service area of Dakota Patient Advocate Solutions"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap wrap-narrow">
+    <div class="section-head center">
+      <p class="eyebrow">Before you call</p>
+      <h2>Questions people ask most</h2>
+    </div>
+    <div class="faq">
+      <details><summary>What happens on the free call?</summary><div><p>You describe the situation in your own words. I ask a few clarifying questions, then tell you honestly whether patient advocacy would help, roughly what it would involve, and what it would cost. If it isn't a fit, I'll say so and point you somewhere more useful. There's no pressure and no follow-up sales sequence.</p></div></details>
+      <details><summary>How quickly can you start?</summary><div><p>Usually within a few days for planned work. Hospital and discharge situations are prioritized &mdash; if something is happening now, call (701) 319-1700 rather than using the form.</p></div></details>
+      <details><summary>Can you help if my family member lives here and I don't?</summary><div><p>Yes, and this is one of the most common reasons people call. I attend appointments and hospital visits in person and keep you fully informed wherever you are, with your family member's written authorization.</p></div></details>
+      <details><summary>Do you work with people outside Bismarck&ndash;Mandan?</summary><div><p>Yes. Records review, appeals, research, telehealth attendance, and coordination all work virtually anywhere in North Dakota. In-person travel elsewhere in the state is arranged case by case.</p></div></details>
+      <details><summary>Is my information kept private?</summary><div><p>Yes. Everything you share is confidential and disclosed only to people and organizations you authorize in writing. Please keep detailed medical information out of the web form &mdash; we'll handle those details securely once we're in touch.</p></div></details>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand__name">Dakota Patient Advocate Solutions</div>
+        <p>Independent nurse patient advocacy for North Dakota families. Board-Certified. Never paid by a hospital, clinic, or insurance company &mdash; only by you.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=61579310060357" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+          <a href="https://www.instagram.com/dakotapatientadvocatesolutions/" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.18.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.18-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.18.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.18.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.18-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.18.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.18-.4-1.24-.06-1.59-.07-4.74-.07zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98zm0 9.05a3.56 3.56 0 1 0 0-7.12 3.56 3.56 0 0 0 0 7.12zm6.99-9.27a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0z"/></svg></a>
+          <a href="https://www.youtube.com/@laurieboeshans275" target="_blank" rel="noopener noreferrer" aria-label="Dakota Patient Advocate Solutions on YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.12-2.13C19.5 4.25 12 4.25 12 4.25s-7.5 0-9.38.52A3 3 0 0 0 .5 6.9C0 8.79 0 12 0 12s0 3.21.5 5.1a3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13C24 15.21 24 12 24 12s0-3.21-.5-5.1zM9.6 15.6V8.4l6.25 3.6-6.25 3.6z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="#p-index">Home</a></li>
+          <li><a href="#p-what-is-an-advocate">What Is an Advocate</a></li>
+          <li><a href="#p-services">Services</a></li>
+          <li><a href="#p-pricing">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>More</h4>
+        <ul class="footer-links">
+          <li><a href="#p-about">About Laurie</a></li>
+          <li><a href="#p-videos">Videos</a></li>
+          <li><a href="#p-contact">Contact</a></li>
+          <li><a href="#p-contact--faq">Questions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get in touch</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+17013191700">(701) 319-1700</a></li>
+          <li><a href="mailto:dpas.nd@outlook.com">dpas.nd@outlook.com</a></li>
+          <li>Mandan, ND 58554</li>
+          <li>Monday – Friday, 8:00 am – 5:00 pm CT</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer-disclaimer">
+      <strong>Please note:</strong> Dakota Patient Advocate Solutions provides independent patient advocacy and healthcare navigation support.
+      Laurie Boeshans is a Licensed Practical Nurse, and advocacy services are not medical care, legal advice, or a
+      substitute for the advice of your physician or attorney. No advocate can guarantee a particular medical,
+      insurance, or billing outcome. Independent advocacy services are generally not covered by Medicare or private
+      health insurance and are paid privately by the client.
+    </p>
+
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Dakota Patient Advocate Solutions. All rights reserved.</span>
+      <span>Mandan, ND &middot; Serving all of North Dakota, in person and virtually</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+/* Dakota Patient Advocate Solutions — site scripts */
+(function () {
+  'use strict';
+
+  /* ---------- Mobile navigation ---------- */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.querySelector('.nav-toggle__label').textContent = open ? 'Close' : 'Menu';
+    });
+
+    // Close the menu when a link is chosen
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a') && nav.classList.contains('is-open')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelector('.nav-toggle__label').textContent = 'Menu';
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelector('.nav-toggle__label').textContent = 'Menu';
+        toggle.focus();
+      }
+    });
+  }
+
+  /* ---------- Sticky header shadow ---------- */
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealables = document.querySelectorAll('.reveal');
+  if (revealables.length) {
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      revealables.forEach(function (el) { io.observe(el); });
+    } else {
+      revealables.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
+
+  /* ---------- Current year in footer ---------- */
+  document.querySelectorAll('[data-year]').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+
+  /* ---------- Image fallbacks ----------
+     If an image can't load (e.g. it was moved), hide it gracefully instead of
+     showing a broken-image icon. Photo areas fall back to a soft panel.
+  --------------------------------------- */
+  document.querySelectorAll('img[data-fallback-hide]').forEach(function (img) {
+    img.addEventListener('error', function () { img.style.display = 'none'; });
+  });
+
+  document.querySelectorAll('.hero__media img, .split__media img, .creds img').forEach(function (img) {
+    img.addEventListener('error', function () {
+      img.style.display = 'none';
+      if (img.parentElement) img.parentElement.classList.add('media-fallback');
+    });
+  });
+
+  /* ---------- Contact form ----------
+     Works with no server: composes a pre-filled email in the visitor's mail app.
+     To collect submissions automatically instead, see README.md (Formspree /
+     Netlify Forms are both one-line swaps).
+  ------------------------------------- */
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      if (form.getAttribute('data-mode') !== 'mailto') return; // a real endpoint is configured
+      e.preventDefault();
+
+      if (form.querySelector('.hp input').value) return; // honeypot: silently drop bots
+
+      var get = function (name) {
+        var el = form.elements[name];
+        return el ? el.value.trim() : '';
+      };
+
+      var lines = [
+        'Name: ' + get('name'),
+        'Phone: ' + get('phone'),
+        'Email: ' + get('email'),
+        'How I can help: ' + get('topic'),
+        'Preferred contact: ' + get('preferred'),
+        '',
+        get('message')
+      ];
+
+      var subject = 'Website inquiry — ' + (get('name') || 'New contact');
+      var href = 'mailto:dpas.nd@outlook.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join('\n'));
+
+      window.location.href = href;
+
+      var status = document.getElementById('form-status');
+      if (status) {
+        status.textContent = 'Your email app should now be open with your message ready to send. '
+          + 'If nothing happened, please email dpas.nd@outlook.com or call (701) 319-1700.';
+        status.style.color = '#0E4E58';
+      }
+    });
+  }
+})();
+
+</script>
+<script>
+(function () {
+  var pages = [].slice.call(document.querySelectorAll('.pv-page'));
+  function show(id) {
+    var target = document.getElementById(id) || pages[0];
+    pages.forEach(function (p) { p.classList.toggle('is-active', p === target); });
+    document.querySelectorAll('.site-nav__link').forEach(function (a) {
+      if (a.getAttribute('href') === '#' + target.id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    document.title = target.getAttribute('data-title');
+    target.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('is-visible'); });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#p-"]');
+    if (!a) return;
+    e.preventDefault();
+    show(a.getAttribute('href').slice(1).split('--')[0]);
+  });
+  show('p-index');
+})();
+</script>
+</body>
+</html>
